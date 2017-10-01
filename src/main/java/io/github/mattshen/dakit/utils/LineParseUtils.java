@@ -12,14 +12,14 @@ import org.slf4j.LoggerFactory;
  */
 public class LineParseUtils {
 
-    private static Logger LOG = LoggerFactory.getLogger(LineParseUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LineParseUtils.class);
 
     public static Observation parse(String line) {
         Observation record = null;
         String[] values = line.split("\\|");
         if (values.length == 4) {
             String[] xy = values[1].split(",");
-            if (xy.length == 2 && checkNumbericValues(values, xy)) {
+            if (xy.length == 2 && checkNumericValues(values, xy)) {
                 record = new Observation();
                 record.setX(Integer.valueOf(StringUtils.trim(xy[0])));
                 record.setY(Integer.valueOf(StringUtils.trim(xy[1])));
@@ -32,7 +32,7 @@ public class LineParseUtils {
         return record;
     }
 
-    private static boolean checkNumbericValues(String[] values, String[] xy) {
+    private static boolean checkNumericValues(String[] values, String[] xy) {
         return StringUtils.isNumber(xy[0]) && StringUtils.isNumber(xy[1]) && StringUtils.isNumber(values[2]);
     }
 

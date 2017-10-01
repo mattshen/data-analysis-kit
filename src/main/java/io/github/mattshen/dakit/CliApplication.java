@@ -5,8 +5,6 @@ import io.github.mattshen.dakit.tasks.Analyzer;
 import io.github.mattshen.dakit.tasks.Generator;
 import io.github.mattshen.dakit.utils.Console;
 
-import java.util.Arrays;
-
 public class CliApplication {
 
     public static void main(String[] args) {

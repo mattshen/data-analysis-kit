@@ -3,10 +3,8 @@ package io.github.mattshen.dakit.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by zhongweishen on 1/10/17.
- */
 public class StringUtilsTest {
+    
     @Test
     public void trim() throws Exception {
 

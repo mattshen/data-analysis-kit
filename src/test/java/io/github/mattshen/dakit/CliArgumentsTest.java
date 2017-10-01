@@ -34,7 +34,7 @@ public class CliArgumentsTest {
         CliArguments cliArgs = CliArguments.create().parse(new String[]{"-t", "analyze"});
         Assert.assertTrue(cliArgs.isAnalyzeTask());
         Assert.assertFalse(cliArgs.isGenerateTask());
-        Assert.assertEquals(Analyzer.DEFAULT_INTPUT_FILE, cliArgs.getInputFile());
+        Assert.assertEquals(Analyzer.DEFAULT_INPUT_FILE, cliArgs.getInputFile());
     }
 
 

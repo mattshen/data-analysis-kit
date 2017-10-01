@@ -11,11 +11,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Generator {
 
-    private static Logger LOG = LoggerFactory.getLogger(Generator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Generator.class);
 
     public static final Integer DEFAULT_REQUIRED_RECORDS = 50000;
 
@@ -69,7 +68,7 @@ public class Generator {
              IntStream stream = parallel
                      ? IntStream.range(0, this.requiredRecords).parallel() : IntStream.range(0, this.requiredRecords)) {
             stream.mapToObj(i -> DataUtils.generateDummyObservation().toString())
-                    .forEach(line -> printWriter.println(line));
+                    .forEach(printWriter::println);
 
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);

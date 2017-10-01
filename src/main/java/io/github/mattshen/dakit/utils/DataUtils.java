@@ -10,7 +10,7 @@ import java.time.Instant;
 
 public class DataUtils {
 
-    public static interface Ranges {
+    public interface Ranges {
         int MIN_X = 0;
         int MAX_X = 40_000_000;
 
@@ -25,40 +25,38 @@ public class DataUtils {
     }
 
 
-    public static int generateRandomInteger(int min, int max) {
+    private static int generateRandomInteger(int min, int max) {
         int diff = max - min + 1;
-        int rand = min + (int) (Math.random() * diff);
-        return rand;
+        return min + (int) (Math.random() * diff);
     }
 
-    public static long generateRandomLong(long min, long max) {
+    private static long generateRandomLong(long min, long max) {
         long diff = max - min + 1;
-        long rand = min + (long) (Math.random() * diff);
-        return rand;
+        return min + (long) (Math.random() * diff);
     }
 
-    public static Instant generateRandomDateTime(Instant start, Instant end) {
-        long randEpochMilli = generateRandomLong(start.toEpochMilli(), end.toEpochMilli());
+    private static Instant generateRandomDateTime() {
+        long randEpochMilli = generateRandomLong(Ranges.START_DATE.toEpochMilli(), Ranges.END_DATE.toEpochMilli());
         return Instant.ofEpochMilli(randEpochMilli);
     }
 
-    public static int generateRandomX() {
+    private static int generateRandomX() {
         return generateRandomInteger(Ranges.MIN_X, Ranges.MAX_X);
     }
 
-    public static int generateRandomY() {
+    private static int generateRandomY() {
         return generateRandomInteger(Ranges.MIN_Y, Ranges.MAX_Y);
     }
 
-    public static int generateRandomTemperature() {
+    private static int generateRandomTemperature() {
         return generateRandomInteger(Ranges.MIN_TEMPERATURE, Ranges.MAX_TEMPERATURE);
     }
 
-    public static String generateRandomTimeString() {
-        return generateRandomDateTime(Ranges.START_DATE, Ranges.END_DATE).toString().substring(0, 16);
+    private static String generateRandomTimeString() {
+        return generateRandomDateTime().toString().substring(0, 16);
     }
 
-    public static Observatory selectRandomObservatory() {
+    private static Observatory selectRandomObservatory() {
         Observatory[] observatories = Observatory.values();
         int randIndex = generateRandomInteger(0, observatories.length - 1);
         return observatories[randIndex];

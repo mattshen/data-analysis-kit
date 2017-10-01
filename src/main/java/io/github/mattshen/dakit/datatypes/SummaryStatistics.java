@@ -13,7 +13,7 @@ public class SummaryStatistics {
     private long temperatureSum = 0;
     private int meanTemperature = 0;
 
-    private Map<Observatory, Integer> observations = Collections.synchronizedMap(new HashMap<>());
+    private final Map<Observatory, Integer> observations = Collections.synchronizedMap(new HashMap<>());
 
     private Observation prevRecord = null;
     private long traveledDistance = 0;
@@ -30,7 +30,7 @@ public class SummaryStatistics {
 
     }
 
-    public SummaryStatistics add(Observation record) {
+    public void add(Observation record) {
 
         if (this.count == 0) {
             this.minTemperature = record.getTemperature();
@@ -54,8 +54,6 @@ public class SummaryStatistics {
 
         this.prevRecord = record;
         this.count++;
-
-        return this;
 
     }
 

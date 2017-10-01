@@ -14,9 +14,9 @@ import static java.util.Arrays.asList;
 
 public class CliArguments {
 
-    private static Logger LOG = LoggerFactory.getLogger(CliArguments.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CliArguments.class);
 
-    private CliArguments instance;
+    private final CliArguments instance;
 
     private OptionParser parser = null;
 
@@ -116,7 +116,7 @@ public class CliArguments {
             if (options.hasArgument("input")) {
                 return String.valueOf(options.valueOf("input"));
             } else {
-                return Analyzer.DEFAULT_INTPUT_FILE;
+                return Analyzer.DEFAULT_INPUT_FILE;
             }
         } else {
             return null;

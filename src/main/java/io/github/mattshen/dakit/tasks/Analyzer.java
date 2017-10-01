@@ -12,16 +12,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.Objects;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Analyzer {
 
-    private static Logger LOG = LoggerFactory.getLogger(Analyzer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Analyzer.class);
 
-    public static final String DEFAULT_INTPUT_FILE = "./sorted_data_file.txt";
+    public static final String DEFAULT_INPUT_FILE = "./sorted_data_file.txt";
 
-    private String inputFile = DEFAULT_INTPUT_FILE;
+    private String inputFile = DEFAULT_INPUT_FILE;
 
     private boolean parallel = false;
 

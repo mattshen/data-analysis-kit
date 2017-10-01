@@ -5,8 +5,6 @@ import io.github.mattshen.dakit.datatypes.Observatory;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 
 public class LineParseUtilsTest {
 
@@ -31,7 +29,7 @@ public class LineParseUtilsTest {
     @Test
     public void parse_incorrect_number2_value() {
         Observation result = LineParseUtils.parse("2016-10-25T09:40|1,2|-37abc|FR");
-        Assert.assertNull(null);
+        Assert.assertNull(result);
     }
 
     @Test
