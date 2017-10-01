@@ -37,10 +37,10 @@ public class CliArguments {
 
         parser.acceptsAll(asList("h", "help"), "show help").forHelp();
 
-        parser.acceptsAll(asList("t", "task"), "task name")
+        parser.acceptsAll(asList("t", "task"), "task name. Supports 'analyze' or 'generate'")
                 .withRequiredArg();
 
-        parser.acceptsAll(asList("n", "required-records")).withRequiredArg()
+        parser.acceptsAll(asList("n", "required-records")).withOptionalArg()
                 .ofType(Integer.class).defaultsTo(Generator.DEFAULT_REQUIRED_RECORDS);
 
         parser.acceptsAll(asList("o", "output"), "output file").withRequiredArg()
@@ -49,8 +49,12 @@ public class CliArguments {
         parser.acceptsAll(asList("i", "input"), "input file").withRequiredArg()
                 .describedAs("path").ofType(File.class);
 
+        parser.acceptsAll(asList("p", "parallel"), "generate and analyze concurrently");
+
+        parser.acceptsAll(asList("v", "verbose"), "print more details in the running");
 
         instance.options = parser.parse(args);
+
         return instance;
     }
 
@@ -78,8 +82,16 @@ public class CliArguments {
         return options.hasArgument("task") && String.valueOf(options.valueOf("task")).equals("analyze");
     }
 
+    public boolean isParallel() {
+        return options.has("parallel");
+    }
+
+    public boolean isVerbose() {
+        return options.has("verbose");
+    }
+
     public Integer getRequiredRecords() {
-        if (options.hasArgument("required-records") ) {
+        if (options.has("required-records") ) {
             return (Integer)options.valueOf("required-records");
         } else {
             return Generator.DEFAULT_REQUIRED_RECORDS;

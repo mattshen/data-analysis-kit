@@ -5,6 +5,8 @@ import io.github.mattshen.dakit.tasks.Analyzer;
 import io.github.mattshen.dakit.tasks.Generator;
 import io.github.mattshen.dakit.utils.Console;
 
+import java.util.Arrays;
+
 public class CliApplication {
 
     public static void main(String[] args) {
@@ -18,13 +20,18 @@ public class CliApplication {
                 Generator.create()
                         .setRequiredRecords(cliArgs.getRequiredRecords())
                         .setOutputFile(cliArgs.getOutputFile())
+                        .setParallel(cliArgs.isParallel())
+                        .setVerbose(cliArgs.isVerbose())
                         .execute();
             } else if (cliArgs.isAnalyzeTask()) {
                 Analyzer.create()
                         .setInputFile(cliArgs.getInputFile())
-                        .execute();
+                        .setParallel(cliArgs.isParallel())
+                        .setVerbose(cliArgs.isVerbose())
+                        .execute()
+                        .printResults();
             } else {
-                Console.log("Error: task not specified");
+                Console.log("Error: must specify task");
                 Console.log("");
                 cliArgs.printHelp();
             }

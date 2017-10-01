@@ -3,6 +3,8 @@ package io.github.mattshen.dakit.datatypes;
 import io.github.mattshen.dakit.utils.StringUtils;
 
 import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.stream.Stream;
 
 public enum Observatory {
 
@@ -20,11 +22,14 @@ public enum Observatory {
     }
 
     public static Observatory getValue(String s) {
-        if (Arrays.asList(Observatory.values()).contains(StringUtils.trim(s))){
-            return Observatory.valueOf(StringUtils.trim(s));
-        } else {
-            return OTHER;
+        Observatory retVal = OTHER;
+        for(Observatory v : Observatory.values()) {
+            if(v.name().equalsIgnoreCase(StringUtils.trim(s))) {
+                retVal = v;
+                break;
+            }
         }
+        return retVal;
     }
 
 }

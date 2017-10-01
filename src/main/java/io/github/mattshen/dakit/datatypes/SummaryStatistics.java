@@ -41,7 +41,7 @@ public class SummaryStatistics {
         }
 
         this.temperatureSum += record.getTemperature();
-        this.observations.compute(record.getObservatory(), (observatory, value) -> value == null? 1 : value + 1);
+        this.observations.compute(record.getObservatory(), (observatory, value) -> value == null ? 1 : value + 1);
 
         //distance of two consecutive locations
         if (prevRecord == null) {
@@ -53,14 +53,14 @@ public class SummaryStatistics {
         }
 
         this.prevRecord = record;
-        this.count ++;
+        this.count++;
 
         return this;
 
     }
 
     public SummaryStatistics done() {
-        this.meanTemperature = (int)(this.temperatureSum / this.count);
+        this.meanTemperature = (int) (this.temperatureSum / this.count);
         return this;
     }
 
@@ -90,5 +90,9 @@ public class SummaryStatistics {
 
     public long getTraveledDistance() {
         return traveledDistance;
+    }
+
+    public void setTraveledDistance(long traveledDistance) {
+        this.traveledDistance = traveledDistance;
     }
 }

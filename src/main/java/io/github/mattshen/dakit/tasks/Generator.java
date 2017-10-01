@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Generator {
 
@@ -24,7 +25,12 @@ public class Generator {
 
     private String outputFile = DEFAULT_OUTPUT_FILE;
 
-    private Generator() {}
+    private boolean parallel = false;
+
+    private boolean verbose = false;
+
+    private Generator() {
+    }
 
     public static Generator create() {
         return new Generator();
@@ -40,16 +46,29 @@ public class Generator {
         return this;
     }
 
+    public Generator setParallel(boolean parallel) {
+        this.parallel = parallel;
+        return this;
+    }
+
+    public Generator setVerbose(boolean verbose) {
+        this.verbose = verbose;
+        return this;
+    }
 
     public void execute() {
 
         Console.log(MessageFormat.format("Generating {0} records into file {1}", this.requiredRecords, outputFile));
 
+        if (verbose) {
+            Console.log(MessageFormat.format("Parallel Mode: {0}", this.parallel));
+        }
+
         try (FileWriter fileWriter = new FileWriter(outputFile);
-             PrintWriter printWriter = new PrintWriter(fileWriter)) {
-            IntStream.range(0, this.requiredRecords)
-                    .parallel()
-                    .mapToObj(i -> DataUtils.generateDummyObservation().toString())
+             PrintWriter printWriter = new PrintWriter(fileWriter);
+             IntStream stream = parallel
+                     ? IntStream.range(0, this.requiredRecords).parallel() : IntStream.range(0, this.requiredRecords)) {
+            stream.mapToObj(i -> DataUtils.generateDummyObservation().toString())
                     .forEach(line -> printWriter.println(line));
 
         } catch (IOException e) {
