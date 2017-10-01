@@ -24,6 +24,9 @@ public class CliApplication {
             } else if (cliArgs.isAnalyzeTask()) {
                 Analyzer.create()
                         .setInputFile(cliArgs.getInputFile())
+                        .setOutputFile(cliArgs.getOutputFile())
+                        .setDistanceUnit(cliArgs.getDistanceUnit())
+                        .setTemperatureUnit(cliArgs.getTemperatureUnit())
                         .setParallel(cliArgs.isParallel())
                         .setVerbose(cliArgs.isVerbose())
                         .execute()

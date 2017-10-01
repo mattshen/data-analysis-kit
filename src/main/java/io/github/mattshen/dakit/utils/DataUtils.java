@@ -1,11 +1,13 @@
 package io.github.mattshen.dakit.utils;
 
+import io.github.mattshen.dakit.datatypes.DistanceUnit;
 import io.github.mattshen.dakit.datatypes.Observation;
 import io.github.mattshen.dakit.datatypes.Observatory;
+import io.github.mattshen.dakit.datatypes.TemperatureUnit;
 
+import java.text.MessageFormat;
 import java.time.Instant;
-
-
+import java.util.function.Function;
 
 
 public class DataUtils {
@@ -40,11 +42,11 @@ public class DataUtils {
         return Instant.ofEpochMilli(randEpochMilli);
     }
 
-    private static int generateRandomX() {
+    private static int generateRandomXInMeters() {
         return generateRandomInteger(Ranges.MIN_X, Ranges.MAX_X);
     }
 
-    private static int generateRandomY() {
+    private static int generateRandomYInMeters() {
         return generateRandomInteger(Ranges.MIN_Y, Ranges.MAX_Y);
     }
 
@@ -63,13 +65,33 @@ public class DataUtils {
     }
 
     public static Observation generateDummyObservation() {
+
+        Observatory observatory = selectRandomObservatory();
+
         Observation record = new Observation();
         record.setTimestamp(generateRandomTimeString());
-        record.setX(generateRandomX());
-        record.setY(generateRandomY());
-        record.setTemperature(generateRandomTemperature());
-        record.setObservatory(selectRandomObservatory());
+        record.setObservatory(observatory);
+
+        record.setXInMeter(generateRandomXInMeters());
+        record.setYInMeters(generateRandomYInMeters());
+        record.setTemperatureInCelsius(generateRandomTemperature());
+
         return record;
     }
+
+    public static String normalize(Observation record, DistanceUnit dUnit, TemperatureUnit tUnit) {
+
+        Function<Integer, Integer> distanceConverter = dUnit.fromMeters.compose(record.getObservatory().dUnit.toMeters);
+        Function<Integer, Integer> temperatureConverter = tUnit.fromCelsius.compose(record.getObservatory().tUnit.toCelsius);
+
+        return MessageFormat.format("{0}|{1},{2}|{3}|{4}",
+                record.getTimestamp(),
+                String.valueOf(distanceConverter.apply(record.getX())),
+                String.valueOf(distanceConverter.apply(record.getY())),
+                temperatureConverter.apply(record.getTemperature()),
+                record.getObservatory().name());
+
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package io.github.mattshen.dakit.datatypes;
 
 import java.text.MessageFormat;
+import java.util.function.Function;
 
 public class Observation {
 
@@ -26,24 +27,48 @@ public class Observation {
         return x;
     }
 
+    public int getXInMeters() {
+        return observatory.dUnit.toMeters.apply(x);
+    }
+
     public void setX(int x) {
         this.x = x;
+    }
+
+    public void setXInMeter(int x) {
+        this.x = observatory.dUnit.fromMeters.apply(x);
     }
 
     public int getY() {
         return y;
     }
 
+    public int getYInMeters() {
+        return observatory.dUnit.toMeters.apply(y);
+    }
+
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setYInMeters(int y) {
+        this.y = observatory.dUnit.fromMeters.apply(y);
     }
 
     public int getTemperature() {
         return temperature;
     }
 
+    public int getTemperatureInCelsius() {
+        return observatory.tUnit.toCelsius.apply(temperature);
+    }
+
     public void setTemperature(int temperature) {
         this.temperature = temperature;
+    }
+
+    public void setTemperatureInCelsius(int temperature) {
+        this.temperature = observatory.tUnit.fromCelsius.apply(temperature);
     }
 
     public Observatory getObservatory() {

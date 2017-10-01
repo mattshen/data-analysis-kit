@@ -57,7 +57,7 @@ public class Generator {
 
     public void execute() {
 
-        Console.log(MessageFormat.format("Generating {0} records into file {1}", this.requiredRecords, outputFile));
+        Console.log(MessageFormat.format("Generating {0} records into file {1} ...", this.requiredRecords, outputFile));
 
         if (verbose) {
             Console.log(MessageFormat.format("Parallel Mode: {0}", this.parallel));

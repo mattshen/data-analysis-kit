@@ -9,7 +9,12 @@ public enum Observatory {
     FR(TemperatureUnit.KELVIN, DistanceUnit.M),
     OTHER(TemperatureUnit.KELVIN, DistanceUnit.KM);
 
+    public TemperatureUnit tUnit;
+    public DistanceUnit dUnit;
+
     Observatory(TemperatureUnit tUnit, DistanceUnit dUnit) {
+        this.tUnit = tUnit;
+        this.dUnit = dUnit;
     }
 
     public static Observatory getValue(String s) {

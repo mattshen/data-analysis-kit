@@ -1,5 +1,7 @@
 package io.github.mattshen.dakit;
 
+import io.github.mattshen.dakit.datatypes.DistanceUnit;
+import io.github.mattshen.dakit.datatypes.TemperatureUnit;
 import io.github.mattshen.dakit.tasks.Analyzer;
 import io.github.mattshen.dakit.tasks.Generator;
 import joptsimple.OptionParser;
@@ -37,21 +39,27 @@ public class CliArguments {
 
         parser.acceptsAll(asList("h", "help"), "show help").forHelp();
 
-        parser.acceptsAll(asList("t", "task"), "task name. Supports 'analyze' or 'generate'")
+        parser.acceptsAll(asList("t", "task"), "task name. supports 'analyze' or 'generate'")
                 .withRequiredArg();
 
-        parser.acceptsAll(asList("n", "required-records")).withOptionalArg()
+        parser.acceptsAll(asList("n", "required-records"), "generate task only").withOptionalArg()
                 .ofType(Integer.class).defaultsTo(Generator.DEFAULT_REQUIRED_RECORDS);
 
         parser.acceptsAll(asList("o", "output"), "output file").withRequiredArg()
                 .describedAs("path").ofType(File.class);
 
-        parser.acceptsAll(asList("i", "input"), "input file").withRequiredArg()
+        parser.acceptsAll(asList("i", "input"), "input file. analyze task only").withRequiredArg()
                 .describedAs("path").ofType(File.class);
 
         parser.acceptsAll(asList("p", "parallel"), "generate and analyze concurrently");
 
         parser.acceptsAll(asList("v", "verbose"), "print more details in the running");
+
+        parser.acceptsAll(asList("unit-distance"), "normalized distance unit. supports km, m, mile. analyze task only")
+                .withRequiredArg().defaultsTo("m");
+        parser.acceptsAll(asList("unit-temperature"), "normalized temperature unit. supports celsius, fahrenheit, kelvin. analyze task only")
+                .withRequiredArg().defaultsTo("celsius");
+
 
         instance.options = parser.parse(args);
 
@@ -105,6 +113,12 @@ public class CliArguments {
             } else {
                 return Generator.DEFAULT_OUTPUT_FILE;
             }
+        } else if (isAnalyzeTask()) {
+            if (options.hasArgument("output")) {
+                return String.valueOf(options.valueOf("output"));
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -120,6 +134,22 @@ public class CliArguments {
             }
         } else {
             return null;
+        }
+    }
+
+    public DistanceUnit getDistanceUnit() {
+        if (options.hasArgument("unit-distance")) {
+            return DistanceUnit.getValue((String)options.valueOf("unit-distance"));
+        } else {
+            return DistanceUnit.M;
+        }
+    }
+
+    public TemperatureUnit getTemperatureUnit() {
+        if (options.hasArgument("unit-temperature")) {
+            return TemperatureUnit.getValue((String)options.valueOf("unit-temperature"));
+        } else {
+            return TemperatureUnit.CELSIUS;
         }
     }
 
