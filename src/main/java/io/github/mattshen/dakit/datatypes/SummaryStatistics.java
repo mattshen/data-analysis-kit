@@ -64,4 +64,31 @@ public class SummaryStatistics {
         return this;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public int getMinTemperature() {
+        return minTemperature;
+    }
+
+    public int getMaxTemperature() {
+        return maxTemperature;
+    }
+
+    public long getTemperatureSum() {
+        return temperatureSum;
+    }
+
+    public int getMeanTemperature() {
+        return meanTemperature;
+    }
+
+    public Map<Observatory, Integer> getObservations() {
+        return observations;
+    }
+
+    public long getTraveledDistance() {
+        return traveledDistance;
+    }
 }

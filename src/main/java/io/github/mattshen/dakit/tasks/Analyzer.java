@@ -2,7 +2,8 @@ package io.github.mattshen.dakit.tasks;
 
 
 import io.github.mattshen.dakit.datatypes.SummaryStatistics;
-import io.github.mattshen.dakit.utils.LineParser;
+import io.github.mattshen.dakit.utils.Console;
+import io.github.mattshen.dakit.utils.LineParseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,8 @@ public class Analyzer {
 
     private String inputFile = DEFAULT_INTPUT_FILE;
 
+    private SummaryStatistics result;
+
     private Analyzer() {
     }
 
@@ -32,20 +35,27 @@ public class Analyzer {
         return this;
     }
 
-    public void execute() {
+    public Analyzer execute() {
         try (Stream<String> stream = Files.lines(Paths.get(inputFile))) {
-            SummaryStatistics stats = stream
-                    .map(LineParser::parse)
+            result = stream
+                    .map(LineParseUtils::parse)
                     .filter(Objects::nonNull)
                     .reduce(new SummaryStatistics(), SummaryStatistics::add, (summaryStatistics, summaryStatistics2) -> summaryStatistics)
                     .done();
 
-            System.out.println("\nfinal statistics: \n" + stats);
-
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
+        return this;
     }
 
+
+    public void printResults() {
+        Console.log(result.toString());
+    }
+
+    public SummaryStatistics getResult() {
+        return result;
+    }
 
 }

@@ -6,21 +6,23 @@ import io.github.mattshen.dakit.datatypes.Observatory;
 import java.time.Instant;
 
 
-interface Ranges {
-    int MIN_X = 0;
-    int MAX_X = 40_000_000;
 
-    int MIN_Y = 0;
-    int MAX_Y = 40_000_000;
-
-    int MIN_TEMPERATURE = -50;
-    int MAX_TEMPERATURE = 50;
-
-    Instant START_DATE = Instant.parse("2016-09-30T00:00:00.00Z");
-    Instant END_DATE = Instant.parse("2017-09-30T00:00:00.00Z");
-}
 
 public class DataUtils {
+
+    public static interface Ranges {
+        int MIN_X = 0;
+        int MAX_X = 40_000_000;
+
+        int MIN_Y = 0;
+        int MAX_Y = 40_000_000;
+
+        int MIN_TEMPERATURE = -50;
+        int MAX_TEMPERATURE = 50;
+
+        Instant START_DATE = Instant.parse("2015-09-30T00:00:00.00Z");
+        Instant END_DATE = Instant.parse("2017-09-30T00:00:00.00Z");
+    }
 
 
     public static int generateRandomInteger(int min, int max) {

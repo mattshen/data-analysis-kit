@@ -94,7 +94,7 @@ public class CliArguments {
                 return Generator.DEFAULT_OUTPUT_FILE;
             }
         } else {
-            throw new IllegalArgumentException("not implemented");
+            return null;
         }
 
     }
