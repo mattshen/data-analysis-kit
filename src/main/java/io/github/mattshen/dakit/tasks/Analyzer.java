@@ -1,4 +1,4 @@
-package io.github.mattshen.dakit;
+package io.github.mattshen.dakit.tasks;
 
 
 import io.github.mattshen.dakit.datatypes.SummaryStatistics;
@@ -16,9 +16,24 @@ public class Analyzer {
 
     private static Logger LOG = LoggerFactory.getLogger(Analyzer.class);
 
-    public static void main(String[] args) {
-        try (Stream<String> stream = Files.lines(Paths.get("./sorted_dummy_data_small.txt"))) {
+    public static final String DEFAULT_INTPUT_FILE = "./sorted_data_file.txt";
 
+    private String inputFile = DEFAULT_INTPUT_FILE;
+
+    private Analyzer() {
+    }
+
+    public static Analyzer create() {
+        return new Analyzer();
+    }
+
+    public Analyzer setInputFile(String inputFile) {
+        this.inputFile = inputFile;
+        return this;
+    }
+
+    public void execute() {
+        try (Stream<String> stream = Files.lines(Paths.get(inputFile))) {
             SummaryStatistics stats = stream
                     .map(LineParser::parse)
                     .filter(Objects::nonNull)
@@ -27,10 +42,10 @@ public class Analyzer {
 
             System.out.println("\nfinal statistics: \n" + stats);
 
-
         } catch (IOException e) {
-            LOG.error("Errors", e);
+            LOG.error(e.getMessage(), e);
         }
     }
+
 
 }

@@ -6,23 +6,21 @@ import io.github.mattshen.dakit.datatypes.Observatory;
 import java.time.Instant;
 
 
+interface Ranges {
+    int MIN_X = 0;
+    int MAX_X = 40_000_000;
+
+    int MIN_Y = 0;
+    int MAX_Y = 40_000_000;
+
+    int MIN_TEMPERATURE = -50;
+    int MAX_TEMPERATURE = 50;
+
+    Instant START_DATE = Instant.parse("2016-09-30T00:00:00.00Z");
+    Instant END_DATE = Instant.parse("2017-09-30T00:00:00.00Z");
+}
+
 public class DataUtils {
-
-    public static interface Ranges {
-
-        public static int MIN_X = 0;
-        public static int MAX_X = 40_000_000;
-
-        public static int MIN_Y = 0;
-        public static int MAX_Y = 40_000_000;
-
-        public static int MIN_TEMPERATURE = -50;
-        public static int MAX_TEMPERATURE = 50;
-
-        public static Instant START_DATE = Instant.parse("2016-09-30T00:00:00.00Z");
-        public static Instant END_DATE = Instant.parse("2017-09-30T00:00:00.00Z");
-
-    }
 
 
     public static int generateRandomInteger(int min, int max) {
@@ -64,7 +62,7 @@ public class DataUtils {
         return observatories[randIndex];
     }
 
-    public static Observation generateDummyGPSRecord() {
+    public static Observation generateDummyObservation() {
         Observation record = new Observation();
         record.setTimestamp(generateRandomTimeString());
         record.setX(generateRandomX());

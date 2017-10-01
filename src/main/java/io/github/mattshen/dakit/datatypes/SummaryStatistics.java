@@ -25,8 +25,8 @@ public class SummaryStatistics {
                 "\nSum Temperature: " + temperatureSum +
                 "\nMean Temperature: " + meanTemperature +
                 "\nCount: " + count +
-                "\nTraveledDistance: " + traveledDistance +
-                "\n observations per post: " + observations;
+                "\nTraveledDistance: " + traveledDistance + " metres" +
+                "\nObservations per post: " + observations;
 
     }
 

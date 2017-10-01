@@ -2,3 +2,5 @@
 build
 .idea
 data-analysis-kit.iml
+data_file.*
+sorted_data_file.*

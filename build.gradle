@@ -7,6 +7,13 @@ mainClassName = 'io.github.mattshen.dakit.CliApplication'
 
 sourceCompatibility = 1.8
 
+run {
+    standardInput = System.in
+    if (System.getProperty("exec.args") != null) {
+        args System.getProperty("exec.args").split()
+    }
+}
+
 repositories {
     mavenCentral()
 }
