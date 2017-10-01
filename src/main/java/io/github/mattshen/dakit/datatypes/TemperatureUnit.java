@@ -11,8 +11,8 @@ public enum TemperatureUnit {
     FAHRENHEIT(f -> (int) ((f - 32) / 1.8), c -> (int) (c * 1.8 + 32)),
     KELVIN(k -> (int) (k - 273.15), c -> (int) (c + 273.15));
 
-    public Function<Integer, Integer> toCelsius;
-    public Function<Integer, Integer> fromCelsius;
+    public final Function<Integer, Integer> toCelsius;
+    public final Function<Integer, Integer> fromCelsius;
 
     TemperatureUnit(Function<Integer, Integer> toCelsius, Function<Integer, Integer> fromCelsius) {
         this.toCelsius = toCelsius;

@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
  */
 public class LineParseUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LineParseUtils.class);
-
     public static Observation parse(String line) {
         Observation record = null;
         String[] values = line.split("\\|");

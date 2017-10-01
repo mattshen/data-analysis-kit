@@ -11,8 +11,8 @@ public enum DistanceUnit {
     MILE(mi -> (int) (mi * 1609.34), m -> (int) (m / 1609.34)),
     M(m -> m, m -> m);
 
-    public Function<Integer, Integer> toMeters;
-    public Function<Integer, Integer> fromMeters;
+    public final Function<Integer, Integer> toMeters;
+    public final Function<Integer, Integer> fromMeters;
 
     DistanceUnit(Function<Integer, Integer> toMeters, Function<Integer, Integer> fromMeters) {
         this.toMeters = toMeters;

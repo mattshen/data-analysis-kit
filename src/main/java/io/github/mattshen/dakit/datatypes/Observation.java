@@ -1,7 +1,6 @@
 package io.github.mattshen.dakit.datatypes;
 
 import java.text.MessageFormat;
-import java.util.function.Function;
 
 public class Observation {
 

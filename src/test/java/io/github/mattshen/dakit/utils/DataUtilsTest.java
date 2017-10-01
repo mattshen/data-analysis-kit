@@ -4,7 +4,6 @@ import io.github.mattshen.dakit.datatypes.Observation;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.function.Function;
 import java.util.stream.IntStream;
 
 

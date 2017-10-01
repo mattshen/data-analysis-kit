@@ -9,8 +9,8 @@ public enum Observatory {
     FR(TemperatureUnit.KELVIN, DistanceUnit.M),
     OTHER(TemperatureUnit.KELVIN, DistanceUnit.KM);
 
-    public TemperatureUnit tUnit;
-    public DistanceUnit dUnit;
+    public final TemperatureUnit tUnit;
+    public final DistanceUnit dUnit;
 
     Observatory(TemperatureUnit tUnit, DistanceUnit dUnit) {
         this.tUnit = tUnit;

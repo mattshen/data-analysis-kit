@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 
 public class AnalyzerTest {
-    
+
 
     @Test
     public void analyze_should_work() throws IOException {

@@ -25,8 +25,6 @@ public class Analyzer {
 
     public static final String DEFAULT_INPUT_FILE = "./sorted_data_file.txt";
 
-    public static final String DEFAULT_OUTPUT_FILE = "./normalized_data_file.txt";
-
     private String inputFile = DEFAULT_INPUT_FILE;
 
     private String outputFile = null;
@@ -92,7 +90,7 @@ public class Analyzer {
         try (Stream<String> stream = parallel ?
                 Files.lines(Paths.get(inputFile)).parallel() : Files.lines(Paths.get(inputFile));
              FileWriter fileWriter = outputFile == null? null : new FileWriter(outputFile);
-             PrintWriter printWriter = outputFile == null? null : new PrintWriter(fileWriter);
+             PrintWriter printWriter = fileWriter == null? null : new PrintWriter(fileWriter)
         ) {
 
             SummaryStatistics stats = new SummaryStatistics();
