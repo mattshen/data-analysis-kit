@@ -49,7 +49,7 @@ public class SummaryStatistics {
         } else {
             long a = prevRecord.getXInMeters() - record.getXInMeters();
             long b = prevRecord.getYInMeters() - record.getYInMeters();
-            traveledDistance += Math.sqrt(a * 2 + b * b);
+            traveledDistance += Math.sqrt(a * a + b * b);
         }
 
         this.prevRecord = record;
