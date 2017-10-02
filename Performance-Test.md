@@ -3,7 +3,7 @@
 Tests were run on a VM with Intel i5-4690K CPU, 7GB spare MEM. 
 
 ## Test 1
-----
+
 Generating test data in parallel
 ```
 $time ./data-analysis-kit -t generate -n 500000000 -p
@@ -15,7 +15,7 @@ sys	13m51.628s
 ```
 
 ## Test 2
-----
+
 Sorting with GNU sort
 
 ```
@@ -27,7 +27,7 @@ sys	2m27.048s
 ```
 
 ## Test 3
-----
+
 Analyzing and normalizing.
 
 ```
@@ -51,7 +51,7 @@ sys	2m12.016s
 ```
 
 ## Test 4
-----
+
 Analyzing only
 
 ```

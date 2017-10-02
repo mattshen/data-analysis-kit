@@ -1,12 +1,12 @@
 # **Data Analysis Kit**
 
 ## Summary
-----
+
 
 A simple CLI tool to analyze logs of a weather balloon for important information.
 
 ## Data Format
-----
+
 
 `<timestamp>|<location>|<temperature>|<observatory>`
 
@@ -16,7 +16,7 @@ e.g `2014-12-31T13:44|10,5|243|AU`
 `location` is a co-ordinate x,y *on a plane* . And x, and y are natural numbers in observatory specific units. 
 
 ## Prerequisites
-----
+
 - Git
 - Java 8
 - Gradle 3+
@@ -25,7 +25,7 @@ e.g `2014-12-31T13:44|10,5|243|AU`
 
 
 ## Installation
-----
+
 ```
 $git clone https://mattshen@bitbucket.org/mattshen/data-analysis-kit.git
 $./gradlew build test
@@ -34,7 +34,7 @@ $./gradlew build test
 Binary distribution would be available in `${projectDir}/build/distributions` after building
 
 ## Running Instructions (with source code)
-----
+
 
 ### Help
 ```
@@ -77,9 +77,9 @@ gradlew run -q -Dexec.args="-t analyze -o normalized_data.txt --unit-temperature
 
 
 ## Improvements
-----
+
 - Separate normalizing code from `Analyzer`
 
 ## Some Performance Test Results
-----
+
 [Performance Test](Performance-Test.md)
