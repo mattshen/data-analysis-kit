@@ -27,7 +27,7 @@ e.g `2014-12-31T13:44|10,5|243|AU`
 ## Installation
 
 ```
-$git clone https://mattshen@bitbucket.org/mattshen/data-analysis-kit.git
+$git clone https://github.com/mattshen/data-analysis-kit.git
 $./gradlew build test
 ```
 
