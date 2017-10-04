@@ -79,6 +79,7 @@ gradlew run -q -Dexec.args="-t analyze -o normalized_data.txt --unit-temperature
 ## Improvements
 
 - Separate normalizing code from `Analyzer`
+- Generalize for any types of line-based data
 
 ## Some Performance Test Results
 
